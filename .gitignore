@@ -1,3 +1,4 @@
+*.code-workspace
 .env
 .next/
 prisma/dev.db
