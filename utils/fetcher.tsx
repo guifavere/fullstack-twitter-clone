@@ -1,5 +1,5 @@
-export const fetcher = (url, data = undefined) =>
-  fetch(window.location.origin + url, {
+export function fetcher(endpoint: string, data = undefined) {
+  return fetch(window.location.origin + endpoint, {
     method: data ? 'POST' : 'GET',
     credentials: 'include',
     headers: {
@@ -7,3 +7,4 @@ export const fetcher = (url, data = undefined) =>
     },
     body: JSON.stringify(data)
   }).then(r => r.json());
+}
