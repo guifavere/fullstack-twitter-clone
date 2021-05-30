@@ -1,25 +1,26 @@
-import { Row, Col, Button, message } from 'antd';
-import { SignupForm } from './SignupForm';
+import { Col, Row } from 'antd';
+
 import { LogoutButton } from './LogoutButton';
-import { useMe } from './util/hooks';
-import { useState } from 'react';
+import { SignupForm } from './SignupForm';
+import { useMe, User } from '../hooks/useMe';
 
-export const Profile = () => {
+function isUserLoggedIn(me?: User): me is User {
+  return me !== undefined;
+}
+
+function Profile(): JSX.Element {
   const { me } = useMe();
-  const [loading, setLoading] = useState(false);
-
-  if (!me) return null;
 
   return (
     <Row style={{ padding: '1.5rem' }}>
-      {!me.username ? (
-        <SignupForm />
-      ) : (
+      {isUserLoggedIn(me) ? (
         <Col>
           Logged in as: <strong>{me.username}</strong>
           <LogoutButton />
         </Col>
-      )}
+      ) : <SignupForm />}
     </Row>
   );
 }
+
+export { Profile };

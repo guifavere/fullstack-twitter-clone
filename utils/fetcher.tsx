@@ -1,4 +1,4 @@
-export function fetcher(endpoint: string, data = undefined) {
+export function fetcher(endpoint: string, data?: any) {
   return fetch(window.location.origin + endpoint, {
     method: data ? 'POST' : 'GET',
     credentials: 'include',
