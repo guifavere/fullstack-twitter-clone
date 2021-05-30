@@ -5,7 +5,7 @@ import { SignupForm } from './SignupForm';
 import { useMe, User } from '../hooks/useMe';
 
 function isUserLoggedIn(me?: User): me is User {
-  return me !== undefined;
+  return me !== undefined && 'id' in me;
 }
 
 function Profile(): JSX.Element {

@@ -55,7 +55,7 @@ export function SignupForm(): JSX.Element {
           </div>
           <div>
             <Button htmlType="submit" loading={loading}>
-              {loading ? 'Login' : 'Sign up'}
+              {login ? "Login" : "Sign up"}
             </Button>
           </div>
           <div>

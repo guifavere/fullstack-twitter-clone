@@ -8,19 +8,23 @@ export function Feed(): JSX.Element {
   const { feed } = useFeed();
   const { me } = useMe();
 
-  if (feed) {
-    {feed.map(({ id, text, author }, i) => {
-      const canShowDeleteButton = me?.id === author.id;
-
-      return (
-        <Card key={i}>
-          {canShowDeleteButton && <DeleteButton id={id} feeds={feed} />}
-          <h4>{text}</h4>
-          <span>{author.username}</span>
-        </Card>
-      );
-    })}
+  if (feed === undefined) {
+    return <Spin />
   }
 
-  return <Spin />;
+  return (
+    <>
+      {feed.map(({ id, text, author }, i) => {
+        const canShowDeleteButton = me?.id === author.id;
+
+        return (
+          <Card key={i}>
+            {canShowDeleteButton && <DeleteButton id={id} feeds={feed} />}
+            <h4>{text}</h4>
+            <span>{author.username}</span>
+          </Card>
+        );
+      })}
+    </>
+  );
 }
